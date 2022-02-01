@@ -95,7 +95,7 @@ TARGET_USES_QMAA_OVERRIDE_WFD     := false
 TARGET_USES_QMAA_OVERRIDE_GPS     := false
 TARGET_USES_QMAA_OVERRIDE_ANDROID_RECOVERY := false
 TARGET_USES_QMAA_OVERRIDE_ANDROID_CORE := false
-TARGET_USES_QMAA_OVERRIDE_WLAN    := false
+TARGET_USES_QMAA_OVERRIDE_WLAN    := true
 TARGET_USES_QMAA_OVERRIDE_DPM  := false
 TARGET_USES_QMAA_OVERRIDE_BLUETOOTH   := false
 TARGET_USES_QMAA_OVERRIDE_FM  := false
@@ -232,10 +232,10 @@ ifeq ($(TARGET_USES_QMAA), true)
 ifneq ($(TARGET_USES_QMAA_OVERRIDE_WLAN), true)
 include device/qcom/wlan/default/wlan.mk
 else
-include device/qcom/wlan/taro/wlan.mk
+include device/qcom/wlan/kalama/wlan.mk
 endif
 else
-include device/qcom/wlan/taro/wlan.mk
+include device/qcom/wlan/kalama/wlan.mk
 endif
 
 #----------------------------------------------------------------------
@@ -358,6 +358,13 @@ DEVICE_MANIFEST_SKUS := kalama
 DEVICE_MANIFEST_KALAMA_FILES := device/qcom/kalama/manifest_kalama.xml
 
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
+
+# Enable Camera techpack with VSDK
+ifneq (,$(wildcard $(QCPATH)/chi-cdk))
+include $(QCPATH)/chi-cdk/configs/camera_techpack.mk
+else ifneq (,$(wildcard $(QCPATH)/camx/chi-cdk))
+include $(QCPATH)/camx/chi-cdk/configs/camera_techpack.mk
+endif
 
 #Audio DLKM
 #AUDIO_DLKM := audio_apr.ko
