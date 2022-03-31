@@ -352,13 +352,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
 QTI_CAMERA_PROVIDER_SERVICE := 2.7
 QTI_CAMERA_AON_SERVICE := 1.2
 
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/taro/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/kalama/framework_manifest.xml
 
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
 
 # QCV allows multiple chipsets to be supported on a single vendor.
-# Add vintf device manifests for chipsets in taro QCV family below.
+# Add vintf device manifests for chipsets in kalama QCV family below.
 ifeq ($(TARGET_USES_QMAA), true)
 TARGET_USES_QCV := false
 else

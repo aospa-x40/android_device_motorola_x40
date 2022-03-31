@@ -29,7 +29,7 @@ TARGET_SIGNONLY_BOOTLOADER := true
 
 BOARD_RAMDISK_USE_LZ4 := true
 
--include $(QCPATH)/common/taro/BoardConfigVendor.mk
+-include $(QCPATH)/common/kalama/BoardConfigVendor.mk
 
 SECTOOLS_SECURITY_PROFILE := $(QCPATH)/securemsm/security_profiles/kailua_tz_security_profile.xml
 
@@ -74,9 +74,9 @@ ifeq ($(ENABLE_AB), true)
 TARGET_NO_RECOVERY := true
 # Defines for enabling A/B builds
 AB_OTA_UPDATER := true
-TARGET_RECOVERY_FSTAB := device/qcom/taro/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/qcom/kalama/recovery.fstab
 else
-TARGET_RECOVERY_FSTAB := device/qcom/taro/recovery_non_AB.fstab
+TARGET_RECOVERY_FSTAB := device/qcom/kalama/recovery_non_AB.fstab
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 endif
