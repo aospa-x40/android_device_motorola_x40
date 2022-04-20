@@ -90,7 +90,6 @@ TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG := false
 #true means overriding global QMAA for this tech area
 #false means using global, no override
 TARGET_USES_QMAA_OVERRIDE_RPMB := true
-TARGET_USES_QMAA_OVERRIDE_GPT  := true
 TARGET_USES_QMAA_OVERRIDE_DISPLAY := true
 TARGET_USES_QMAA_OVERRIDE_AUDIO   := true
 TARGET_USES_QMAA_OVERRIDE_VIDEO   := true
