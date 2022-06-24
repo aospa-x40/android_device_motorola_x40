@@ -27,8 +27,8 @@ TARGET_CONSOLE_ENABLED ?=
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Set GRF/Vendor freeze properties
-BOARD_SHIPPING_API_LEVEL := 32
-BOARD_API_LEVEL := 32
+BOARD_SHIPPING_API_LEVEL := 33
+BOARD_API_LEVEL := 33
 
 # Set SoC manufacturer property
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -164,8 +164,8 @@ AEye\
 FDA\
 SnapdragonCamera\
 
-SHIPPING_API_LEVEL := 32
-PRODUCT_SHIPPING_API_LEVEL := 31
+SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 33
 
 # Set kernel version and ion flags
 TARGET_KERNEL_VERSION := 5.15
@@ -173,6 +173,21 @@ TARGET_USES_NEW_ION := true
 
 # Disable DLKM generation until build support is available
 TARGET_KERNEL_DLKM_DISABLE := false
+
+# Tech specific flags
+TARGET_KERNEL_DLKM_AUDIO_OVERRIDE := true
+TARGET_KERNEL_DLKM_BT_OVERRIDE := true
+TARGET_KERNEL_DLKM_CAMERA_OVERRIDE := true
+TARGET_KERNEL_DLKM_NFC_OVERRIDE := true
+TARGET_KERNEL_DLKM_DATA_OVERRIDE := true
+TARGET_KERNEL_DLKM_DISPLAY_OVERRIDE := true
+TARGET_KERNEL_DLKM_MM_DRV_OVERRIDE := true
+TARGET_KERNEL_DLKM_SECURE_MSM_OVERRIDE := true
+TARGET_KERNEL_DLKM_THERMAL_OVERRIDE := true
+TARGET_KERNEL_DLKM_TOUCH_OVERRIDE := true
+TARGET_KERNEL_DLKM_VIDEO_OVERRIDE := true
+TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
+TARGET_KERNEL_DLKM_MMRM_OVERRIDE := true
 
 #####Dynamic partition Handling
 ###
@@ -202,6 +217,9 @@ BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
+ifneq ("$(wildcard device/qcom/$(TARGET_BOARD_PLATFORM)-kernel/vendor_dlkm/system_dlkm.modules.blocklist)", "")
+PRODUCT_COPY_FILES += device/qcom/$(TARGET_BOARD_PLATFORM)-kernel/vendor_dlkm/system_dlkm.modules.blocklist:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+endif
 
 BOARD_HAVE_BLUETOOTH := false
 BOARD_HAVE_QCOM_FM := false
@@ -321,6 +339,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_HOST_PACKAGES += \
     configstore_xmlparser
 
+ifneq (,$(wildcard $(QCPATH)/vsdk-tools))
+PRODUCT_HOST_PACKAGES += \
+    install_vsdk_py2
+PRODUCT_HOST_PACKAGES += \
+    install_vsdk_py3
+PRODUCT_HOST_PACKAGES += \
+    vsdk-metadata
+endif
+
 # QRTR related packages
 PRODUCT_PACKAGES += qrtr-ns
 PRODUCT_PACKAGES += qrtr-lookup
@@ -349,13 +376,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
 QTI_CAMERA_PROVIDER_SERVICE := 2.7
 QTI_CAMERA_AON_SERVICE := 1.2
 
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/taro/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/kalama/framework_manifest.xml
 
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
 
 # QCV allows multiple chipsets to be supported on a single vendor.
-# Add vintf device manifests for chipsets in taro QCV family below.
+# Add vintf device manifests for chipsets in kalama QCV family below.
 ifeq ($(TARGET_USES_QMAA), true)
 TARGET_USES_QCV := false
 else
@@ -421,7 +448,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-BOARD_SYSTEMSDK_VERSIONS := 32
+BOARD_SYSTEMSDK_VERSIONS := 33
 
 DISABLED_VSDK_SNAPSHOTS_LIST := $(subst $(comma),$(space),$(DISABLED_VSDK_SNAPSHOTS))
 
@@ -458,10 +485,6 @@ endif
 $(warning "BOARD_VNDK_VERSION = $(BOARD_VNDK_VERSION), RECOVERY_SNAPSHOT_VERSION=$(RECOVERY_SNAPSHOT_VERSION), RAMDISK_SNAPSHOT_VERSION=$(RAMDISK_SNAPSHOT_VERSION)")
 
 TARGET_MOUNT_POINTS_SYMLINKS := false
-
-# FaceAuth feature
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.biometrics.face.xml \
 
 # Fingerprint feature
 PRODUCT_COPY_FILES += \
@@ -504,7 +527,7 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
 # ODM ueventd.rc
 # - only for use with VM support right now
 ifeq ($(TARGET_ENABLE_VM_SUPPORT),true)
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/ueventd-odm.rc:$(TARGET_COPY_OUT_ODM)/ueventd.rc
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/ueventd-odm.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc
 PRODUCT_PACKAGES += vmmgr vmmgr.rc vmmgr.conf
 endif
 

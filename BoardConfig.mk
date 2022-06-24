@@ -4,7 +4,7 @@
 #
 # TODO(b/124534788): Temporarily allow eng and debug LOCAL_MODULE_TAGS
 
-BOARD_SYSTEMSDK_VERSIONS := 32
+BOARD_SYSTEMSDK_VERSIONS := 33
 
 TARGET_BOARD_PLATFORM := kalama
 TARGET_BOOTLOADER_BOARD_NAME := kalama
@@ -27,9 +27,15 @@ TARGET_USES_REMOTEPROC := true
 TARGET_NO_KERNEL := false
 TARGET_SIGNONLY_BOOTLOADER := true
 
+ifeq ($(TARGET_NO_KERNEL), true)
+BOARD_PREBUILT_BOOTIMAGE := device/qcom/kalama/boot.img
+BOOT_OS_VERSION = $(PLATFORM_VERSION_LAST_STABLE)
+BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
+endif
+
 BOARD_RAMDISK_USE_LZ4 := true
 
--include $(QCPATH)/common/taro/BoardConfigVendor.mk
+-include $(QCPATH)/common/kalama/BoardConfigVendor.mk
 
 SECTOOLS_SECURITY_PROFILE := $(QCPATH)/securemsm/security_profiles/kailua_tz_security_profile.xml
 
@@ -74,9 +80,9 @@ ifeq ($(ENABLE_AB), true)
 TARGET_NO_RECOVERY := true
 # Defines for enabling A/B builds
 AB_OTA_UPDATER := true
-TARGET_RECOVERY_FSTAB := device/qcom/taro/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/qcom/kalama/recovery.fstab
 else
-TARGET_RECOVERY_FSTAB := device/qcom/taro/recovery_non_AB.fstab
+TARGET_RECOVERY_FSTAB := device/qcom/kalama/recovery_non_AB.fstab
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 endif
