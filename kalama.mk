@@ -150,7 +150,7 @@ PRODUCT_PACKAGES += init.qti.usb.qmaa.rc
 endif
 endif
 
-CLEAN_UP_JAVA_IN_VENDOR := warning
+CLEAN_UP_JAVA_IN_VENDOR ?= enforcing
 
 JAVA_IN_VENDOR_SOONG_WHITE_LIST :=\
 CuttlefishService\
