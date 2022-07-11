@@ -94,9 +94,6 @@ ifeq ($(BOARD_AVB_ENABLE), true)
     BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 endif
 
-
-BOARD_USES_METADATA_PARTITION := true
-
 #Enable compilation of oem-extensions to recovery
 #These need to be explicitly
 ifneq ($(AB_OTA_UPDATER),true)
@@ -115,6 +112,11 @@ BOARD_USES_SYSTEM_DLKMIMAGE := true
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
 BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
 
+#Enable Metadata compilation and adding metadata related attributes
+BOARD_USES_METADATA_PARTITION := true
+BOARD_METADATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+BOARD_METADATAIMAGE_PARTITION_SIZE := 67108864
+
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -126,7 +128,6 @@ BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 0x06000000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 48318382080
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_METADATAIMAGE_PARTITION_SIZE := 16777216
 BOARD_DTBOIMG_PARTITION_SIZE := 0x0800000
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
@@ -148,7 +149,7 @@ BOARD_BOOTCONFIG := androidboot.hardware=qcom androidboot.memcg=1 androidboot.us
 # false -- override kernel configuration to disable console
 # <blank> (default) -- use kernel default configuration
 ifeq ($(TARGET_CONSOLE_ENABLED),true)
-BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 qcom_geni_serial.con_enabled=1
+BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 earlycon qcom_geni_serial.con_enabled=1
 BOARD_BOOTCONFIG += androidboot.console=ttyMSM0
 else
 ifeq ($(TARGET_CONSOLE_ENABLED),false)
