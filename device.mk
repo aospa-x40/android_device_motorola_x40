@@ -393,14 +393,3 @@ PRODUCT_PACKAGES_DEBUG += bti_test_prebuilt \
 # Mediaserver 64 Bit enable
 PRODUCT_PROPERTY_OVERRIDES += \
      ro.mediaserver.64b.enable=true
-
-###################################################################################
-# This is the End of target.mk file.
-# Now, Pickup other split product.mk files:
-###################################################################################
-# TODO: Relocate the system product.mk files pickup into qssi lunch, once it is up.
-$(foreach sdefs, $(sort $(wildcard vendor/qcom/defs/product-defs/system/*.mk)), \
-    $(call inherit-product, $(sdefs)))
-$(foreach vdefs, $(sort $(wildcard vendor/qcom/defs/product-defs/vendor/*.mk)), \
-    $(call inherit-product, $(vdefs)))
-###################################################################################
