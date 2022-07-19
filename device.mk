@@ -2,8 +2,6 @@ DEVICE_PATH := device/motorola/x40
 
 BUILD_BROKEN_DUP_RULES := true
 
-RELAX_USES_LIBRARY_CHECK := true
-
 TARGET_BOARD_PLATFORM := kalama
 
 # Enable virtual A/B compression
