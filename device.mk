@@ -382,7 +382,6 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/ueventd-odm.rc:$(TARGET_COPY_OUT_ODM)/etc/ue
 PRODUCT_PACKAGES += vmmgr vmmgr.rc vmmgr.conf
 endif
 
-
 ##Armv9-Tests##
 PRODUCT_PACKAGES_DEBUG += bti_test_prebuilt \
                           pac_test \
