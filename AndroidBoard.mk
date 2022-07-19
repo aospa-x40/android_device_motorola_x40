@@ -26,13 +26,3 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := charger_fw_fstab.qti
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR_ETC)
 include $(BUILD_PREBUILT)
-
-#----------------------------------------------------------------------
-# Radio image
-#----------------------------------------------------------------------
-ifeq ($(ADD_RADIO_FILES), true)
-radio_dir := $(LOCAL_PATH)/radio
-RADIO_FILES := $(notdir $(wildcard $(radio_dir)/*))
-$(foreach f, $(RADIO_FILES), \
-    $(call add-radio-file,radio/$(f)))
-endif
