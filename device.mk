@@ -169,9 +169,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #target specific runtime prop for qspm
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qspm.enable=true
-#ANT+ stack
-PRODUCT_PACKAGES += \
-    libvolumelistener
 
 #Charger
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/charger_fw_fstab.qti:$(TARGET_COPY_OUT_VENDOR)/etc/charger_fw_fstab.qti
