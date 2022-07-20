@@ -121,7 +121,6 @@ BOARD_KERNEL_CMDLINE += $(file < device/qcom/$(TARGET_BOARD_PLATFORM)-kernel/ext
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
 
 #Enable dtb in boot image and boot image header version 3 support.
