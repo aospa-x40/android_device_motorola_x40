@@ -88,7 +88,6 @@ ifneq ("$(wildcard device/qcom/$(TARGET_BOARD_PLATFORM)-kernel/vendor_dlkm/syste
 PRODUCT_COPY_FILES += device/qcom/$(TARGET_BOARD_PLATFORM)-kernel/vendor_dlkm/system_dlkm.modules.blocklist:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 endif
 
-BOARD_HAVE_BLUETOOTH := false
 BOARD_HAVE_QCOM_FM := false
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
