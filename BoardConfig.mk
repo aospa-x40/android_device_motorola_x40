@@ -23,10 +23,6 @@ TARGET_2ND_CPU_VARIANT := cortex-a75
 
 BOARD_RAMDISK_USE_LZ4 := true
 
--include $(QCPATH)/common/kalama/BoardConfigVendor.mk
-
-SECTOOLS_SECURITY_PROFILE := $(QCPATH)/securemsm/security_profiles/kailua_tz_security_profile.xml
-
 # TODO: Enable it back when we have a path forward
 # Disable generation of dtbo.img
 BOARD_KERNEL_SEPARATED_DTBO := false
@@ -153,20 +149,11 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
-#Enable PD locater/notifier
-TARGET_PD_SERVICE_ENABLED := true
-
-#Enable peripheral manager
-TARGET_PER_MGR_ENABLED := true
-
 #Add non-hlos files to ota packages
 ADD_RADIO_FILES := false
 
 # Enable sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
-
-#flag for qspm compilation
-TARGET_USES_QSPM := true
 
 #namespace definition for librecovery_updater
 #differentiate legacy 'sg' or 'bsg' framework

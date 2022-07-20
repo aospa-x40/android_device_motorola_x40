@@ -166,15 +166,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_HOST_PACKAGES += \
     configstore_xmlparser
 
-ifneq (,$(wildcard $(QCPATH)/vsdk-tools))
-PRODUCT_HOST_PACKAGES += \
-    install_vsdk_py2
-PRODUCT_HOST_PACKAGES += \
-    install_vsdk_py3
-PRODUCT_HOST_PACKAGES += \
-    vsdk-metadata
-endif
-
 # QRTR related packages
 PRODUCT_PACKAGES += qrtr-ns
 PRODUCT_PACKAGES += qrtr-lookup
@@ -210,13 +201,6 @@ DEVICE_MANIFEST_SKUS := kalama
 DEVICE_MANIFEST_KALAMA_FILES := $(DEVICE_PATH)/manifest_kalama.xml
 
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
-
-# Enable Camera techpack with VSDK
-ifneq (,$(wildcard $(QCPATH)/chi-cdk))
-include $(QCPATH)/chi-cdk/configs/camera_techpack.mk
-else ifneq (,$(wildcard $(QCPATH)/camx/chi-cdk))
-include $(QCPATH)/camx/chi-cdk/configs/camera_techpack.mk
-endif
 
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm
