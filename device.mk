@@ -107,8 +107,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.perf.scroll_opt=1 \
     vendor.perf.framepacing.enable=1
 
-TARGET_USES_QCOM_BSP := false
-
 # RRO configuration
 TARGET_USES_RRO := true
 
