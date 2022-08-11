@@ -1,6 +1,5 @@
 BUILD_BROKEN_DUP_RULES := true
 
-ALLOW_MISSING_DEPENDENCIES := true
 RELAX_USES_LIBRARY_CHECK := true
 
 TARGET_BOARD_PLATFORM := kalama
@@ -150,18 +149,16 @@ PRODUCT_PACKAGES += init.qti.usb.qmaa.rc
 endif
 endif
 
-CLEAN_UP_JAVA_IN_VENDOR := warning
+CLEAN_UP_JAVA_IN_VENDOR ?= enforcing
 
 JAVA_IN_VENDOR_SOONG_WHITE_LIST :=\
 CuttlefishService\
 pasrservice\
-QFingerprintService\
-QFPCalibration\
 VendorPrivAppPermissionTest\
 
 JAVA_IN_VENDOR_MAKE_WHITE_LIST :=\
 AEye\
-FDA\
+AON\
 SnapdragonCamera\
 
 SHIPPING_API_LEVEL := 33
