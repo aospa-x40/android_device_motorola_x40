@@ -62,7 +62,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 ==========================================================================
 -->
 <manifest version="1.0" type="device" target-level="6">
-    <kernel target-level="7"/>
     <!-- CapabilityConfigStore HAL Service  -->
     <hal format="hidl">
         <name>vendor.qti.hardware.capabilityconfigstore</name>
