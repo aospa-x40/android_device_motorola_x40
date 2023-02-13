@@ -155,8 +155,6 @@ TARGET_USES_IMAGE_GEN_TOOL := true
 DEVICE_MANIFEST_SKUS := kalama
 DEVICE_MANIFEST_KALAMA_FILES := $(DEVICE_PATH)/manifest_kalama.xml
 
-DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
-
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm
 KERNEL_MODULES_OUT := out/target/product/$(PRODUCT_NAME)/$(KERNEL_MODULES_INSTALL)/lib/modules
