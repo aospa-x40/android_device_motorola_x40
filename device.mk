@@ -233,19 +233,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.perf.framepacing.enable=1
 
 #----------------------------------------------------------------------
-# wlan specific
-#----------------------------------------------------------------------
-ifeq ($(TARGET_USES_QMAA), true)
-ifneq ($(TARGET_USES_QMAA_OVERRIDE_WLAN), true)
-include device/qcom/wlan/default/wlan.mk
-else
-include device/qcom/wlan/kalama/wlan.mk
-endif
-else
-include device/qcom/wlan/kalama/wlan.mk
-endif
-
-#----------------------------------------------------------------------
 # perf specific
 #----------------------------------------------------------------------
 ifeq ($(TARGET_USES_QMAA), true)
