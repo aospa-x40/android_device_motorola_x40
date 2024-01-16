@@ -50,11 +50,7 @@ TARGET_SKIP_OTA_PACKAGE := true
 BOARD_AVB_ENABLE := true
 
 # Disable verified boot checks in abl if AVB is not enabled
-ifeq ($(BOARD_AVB_ENABLE), true)
 BOARD_ABL_SIMPLE := false
-else
-BOARD_ABL_SIMPLE := true
-endif
 
 NEED_AIDL_NDK_PLATFORM_BACKEND := true
 

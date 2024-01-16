@@ -59,11 +59,7 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x06400000
 
 TARGET_COPY_OUT_ODM := odm
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
-ifeq ($(BOARD_AVB_ENABLE),true)
 AB_OTA_PARTITIONS ?= boot init_boot vendor_boot recovery vendor vendor_dlkm system_dlkm odm dtbo vbmeta system system_ext product
-else
-AB_OTA_PARTITIONS ?= boot init_boot vendor_boot recovery vendor vendor_dlkm system_dlkm odm dtbo system system_ext product
-endif
 BOARD_EXT4_SHARE_DUP_BLOCKS := true
 
 TARGET_NO_RECOVERY := true
@@ -71,12 +67,10 @@ TARGET_NO_RECOVERY := true
 AB_OTA_UPDATER := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
-ifeq ($(BOARD_AVB_ENABLE), true)
-    BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-    BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
-    BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
-    BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-endif
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # Enable chained vbmeta for boot images
 BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
