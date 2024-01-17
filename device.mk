@@ -36,18 +36,6 @@ TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 #qspa service
 PRODUCT_PACKAGES += vendor.qti.qspa-service qspa-testclient
 
-CLEAN_UP_JAVA_IN_VENDOR ?= enforcing
-
-JAVA_IN_VENDOR_SOONG_WHITE_LIST :=\
-CuttlefishService\
-pasrservice\
-VendorPrivAppPermissionTest\
-
-JAVA_IN_VENDOR_MAKE_WHITE_LIST :=\
-AEye\
-AON\
-SnapdragonCamera\
-
 SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := 33
 
