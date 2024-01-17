@@ -199,13 +199,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
 
-##Armv9-Tests##
-PRODUCT_PACKAGES_DEBUG += bti_test_prebuilt \
-                          pac_test \
-                          mte_tests \
-                          dynamic_memcpy_prebuilt
-##Armv9-Tests##
-
 # Mediaserver 64 Bit enable
 PRODUCT_PROPERTY_OVERRIDES += \
      ro.mediaserver.64b.enable=true
