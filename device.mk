@@ -111,3 +111,22 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/charger_fw_fstab.qti:$(TARGET_COPY_OUT_VENDO
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
+
+TARGET_COMMON_QTI_COMPONENTS := \
+    adreno \
+    alarm \
+    audio \
+    av \
+    bt \
+    display \
+    gps \
+    init \
+    media \
+    nfc \
+    overlay \
+    perf \
+    telephony \
+    usb \
+    vibrator \
+    wfd \
+    wlan
