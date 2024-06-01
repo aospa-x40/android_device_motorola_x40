@@ -24,17 +24,9 @@ TARGET_2ND_CPU_VARIANT := cortex-a75
 
 BOARD_RAMDISK_USE_LZ4 := true
 
-# TODO: Enable it back when we have a path forward
-# Disable generation of dtbo.img
-BOARD_KERNEL_SEPARATED_DTBO := false
-
 ### Dynamic partition Handling
 # Define the Dynamic Partition sizes and groups.
 BOARD_SUPER_PARTITION_SIZE := 6442450944
-ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
-    # Enable DTBO for recovery image
-    BOARD_INCLUDE_RECOVERY_DTBO := true
-endif
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 6438256640
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := vendor vendor_dlkm system_dlkm odm
@@ -66,12 +58,6 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
-
-#Enable compilation of oem-extensions to recovery
-#These need to be explicitly
-ifneq ($(AB_OTA_UPDATER),true)
-    TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_msm
-endif
 
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
@@ -132,9 +118,6 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
-
-#Add non-hlos files to ota packages
-ADD_RADIO_FILES := false
 
 #namespace definition for librecovery_updater
 #differentiate legacy 'sg' or 'bsg' framework

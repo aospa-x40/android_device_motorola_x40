@@ -24,33 +24,11 @@ NEED_AIDL_NDK_PLATFORM_BACKEND := true
 #Suppot to compile recovery without msm headers
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
-#qspa service
-PRODUCT_PACKAGES += vendor.qti.qspa-service qspa-testclient
-
 SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := 33
 
-# Set kernel version and ion flags
+# Set kernel version flags
 TARGET_KERNEL_VERSION := 5.15
-TARGET_USES_NEW_ION := true
-
-# Disable DLKM generation until build support is available
-TARGET_KERNEL_DLKM_DISABLE := false
-
-# Tech specific flags
-TARGET_KERNEL_DLKM_AUDIO_OVERRIDE := true
-TARGET_KERNEL_DLKM_BT_OVERRIDE := true
-TARGET_KERNEL_DLKM_CAMERA_OVERRIDE := true
-TARGET_KERNEL_DLKM_NFC_OVERRIDE := true
-TARGET_KERNEL_DLKM_DATA_OVERRIDE := true
-TARGET_KERNEL_DLKM_DISPLAY_OVERRIDE := true
-TARGET_KERNEL_DLKM_MM_DRV_OVERRIDE := true
-TARGET_KERNEL_DLKM_SECURE_MSM_OVERRIDE := true
-TARGET_KERNEL_DLKM_THERMAL_OVERRIDE := true
-TARGET_KERNEL_DLKM_TOUCH_OVERRIDE := true
-TARGET_KERNEL_DLKM_VIDEO_OVERRIDE := true
-TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
-TARGET_KERNEL_DLKM_MMRM_OVERRIDE := true
 
 #####Dynamic partition Handling
 ###
@@ -85,8 +63,6 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 BOARD_FRP_PARTITION_NAME := frp
 
-PRODUCT_PACKAGES += fs_config_files
-
 # A/B related packagesf
 PRODUCT_PACKAGES += update_engine \
     update_engine_client \
@@ -119,13 +95,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_vendor=ext4 \
     POSTINSTALL_OPTIONAL_vendor=true
 
-# Macro allows Camera module to use new service
-QTI_CAMERA_PROVIDER_SERVICE := 2.7
-QTI_CAMERA_AON_SERVICE := 1.2
-
-# Enable compilation of image_generation_tool
-TARGET_USES_IMAGE_GEN_TOOL := true
-
 DEVICE_MANIFEST_SKUS := kalama
 DEVICE_MANIFEST_KALAMA_FILES := $(DEVICE_PATH)/manifest_kalama.xml
 
@@ -137,23 +106,8 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
 
-# system prop for enabling QFS (QTI Fingerprint Solution)
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.qfp=true
-#target specific runtime prop for qspm
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qspm.enable=true
-
 #Charger
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/charger_fw_fstab.qti:$(TARGET_COPY_OUT_VENDOR)/etc/charger_fw_fstab.qti
 
-# Vendor property to enable advanced network scanning
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.enableadvancedscan=true
-
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
-
-# Mediaserver 64 Bit enable
-PRODUCT_PROPERTY_OVERRIDES += \
-     ro.mediaserver.64b.enable=true
