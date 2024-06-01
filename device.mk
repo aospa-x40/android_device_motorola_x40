@@ -1,3 +1,5 @@
+DEVICE_PATH := device/motorola/x40
+
 BUILD_BROKEN_DUP_RULES := true
 
 RELAX_USES_LIBRARY_CHECK := true
@@ -247,13 +249,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.perf.scroll_opt=1 \
     vendor.perf.framepacing.enable=1
 
-###########
-# Target naming
-PRODUCT_NAME := kalama
-PRODUCT_DEVICE := kalama
-PRODUCT_BRAND := qti
-PRODUCT_MODEL := Kalama for arm64
-
 #----------------------------------------------------------------------
 # wlan specific
 #----------------------------------------------------------------------
@@ -385,7 +380,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 QTI_CAMERA_PROVIDER_SERVICE := 2.7
 QTI_CAMERA_AON_SERVICE := 1.2
 
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/kalama/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
@@ -399,7 +394,7 @@ TARGET_USES_QCV := true
 endif
 
 DEVICE_MANIFEST_SKUS := kalama
-DEVICE_MANIFEST_KALAMA_FILES := device/qcom/kalama/manifest_kalama.xml
+DEVICE_MANIFEST_KALAMA_FILES := $(DEVICE_PATH)/manifest_kalama.xml
 
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
 
