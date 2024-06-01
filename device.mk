@@ -19,9 +19,6 @@ BOARD_API_LEVEL := 33
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
 
-# Disable verified boot checks in abl if AVB is not enabled
-BOARD_ABL_SIMPLE := false
-
 NEED_AIDL_NDK_PLATFORM_BACKEND := true
 
 #Suppot to compile recovery without msm headers
