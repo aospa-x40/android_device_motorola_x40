@@ -16,10 +16,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 BOARD_SHIPPING_API_LEVEL := 33
 BOARD_API_LEVEL := 33
 
-# Set SoC manufacturer property
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.soc.manufacturer=QTI
-
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
 
