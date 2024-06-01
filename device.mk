@@ -102,11 +102,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.incremental.enable=yes
 
-# QRTR related packages
-PRODUCT_PACKAGES += qrtr-ns
-PRODUCT_PACKAGES += qrtr-lookup
-PRODUCT_PACKAGES += libqrtr
-
 # Userdata checkpoint
 PRODUCT_PACKAGES += \
     checkpoint_gc \
