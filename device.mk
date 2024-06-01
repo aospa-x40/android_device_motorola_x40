@@ -45,13 +45,6 @@ NEED_AIDL_NDK_PLATFORM_BACKEND := true
 #Suppot to compile recovery without msm headers
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
-# Enable USB detection in QMAA mode
-ifeq ($(TARGET_USES_QMAA),true)
-ifeq ($(TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG),true)
-PRODUCT_PACKAGES += init.qti.usb.qmaa.rc
-endif
-endif
-
 #qspa service
 PRODUCT_PACKAGES += vendor.qti.qspa-service qspa-testclient
 
@@ -222,14 +215,6 @@ QTI_CAMERA_AON_SERVICE := 1.2
 
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
-
-# QCV allows multiple chipsets to be supported on a single vendor.
-# Add vintf device manifests for chipsets in kalama QCV family below.
-ifeq ($(TARGET_USES_QMAA), true)
-TARGET_USES_QCV := false
-else
-TARGET_USES_QCV := true
-endif
 
 DEVICE_MANIFEST_SKUS := kalama
 DEVICE_MANIFEST_KALAMA_FILES := $(DEVICE_PATH)/manifest_kalama.xml
